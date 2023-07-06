@@ -16,6 +16,7 @@ const NewExpenseForm = (props) => {
   //   inputDate: '',
   // })
 
+<<<<<<< HEAD
   // const titleChangeHandler = (e) => {
   //   // On state approach
   //   //  setUserInput((prev) => {
@@ -37,12 +38,36 @@ const NewExpenseForm = (props) => {
   // };
 
   // single function for handling all  eventHandlers
+=======
+  const titleChangeHandler = (e) => {
+    // On state approach
+    //  setUserInput((prev) => {
+    //    return {
+    //      ...prev,
+    //      inputTitle: e.target.value,
+    //    };
+    //  });
+
+    setEnteredTitle((prev) => (prev = e.target.value));
+  };
+
+  const amountHandler = (e) => {
+    setEnteredAmount((prev) => (prev = e.target.value));
+  };
+
+  const dateHandler = (e) => {
+    setEnteredDate((prev) => (prev = e.target.value));
+  };
+
+  // single function for eventHandlers
+>>>>>>> 2d624c785f0435c43253d458635da5ad9fc94598
 
   const inputChangeHandler = (identifier, value) => {
     return identifier === "title"
       ? setEnteredTitle((prev) => (prev = value))
       : identifier === "amount"
       ? setEnteredAmount((prev) => (prev = value))
+<<<<<<< HEAD
       : identifier === "date"
       ? setEnteredDate((prev) => (prev = value))
       : identifier === "cancel"
@@ -51,6 +76,9 @@ const NewExpenseForm = (props) => {
         setEnteredDate(""),
         props.onAddExps())
       : null;
+=======
+      : setEnteredDate((prev) => (prev = value));
+>>>>>>> 2d624c785f0435c43253d458635da5ad9fc94598
   };
 
   const submitHandler = (event) => {
@@ -58,15 +86,22 @@ const NewExpenseForm = (props) => {
 
     const expenseData = {
       title: enteredTitle,
+<<<<<<< HEAD
       amount: parseInt(enteredAmount),
+=======
+      amount: enteredAmount,
+>>>>>>> 2d624c785f0435c43253d458635da5ad9fc94598
       date: new Date(enteredDate),
     };
     props.onExpenseData(expenseData);
     setEnteredAmount("");
     setEnteredTitle("");
     setEnteredDate("");
+<<<<<<< HEAD
 
     props.onAddExps();
+=======
+>>>>>>> 2d624c785f0435c43253d458635da5ad9fc94598
   };
 
   return (
@@ -108,12 +143,15 @@ const NewExpenseForm = (props) => {
           />
         </div>
         <div className="new-expense__actions">
+<<<<<<< HEAD
           <button
             onClick={(event) => inputChangeHandler("cancel")}
             type="button"
           >
             Cancel
           </button>
+=======
+>>>>>>> 2d624c785f0435c43253d458635da5ad9fc94598
           <button type="submit">Add Expense</button>
         </div>
       </div>
