@@ -1,0 +1,8 @@
+
+.inner-container {
+    display: flex;
+    max-width: 50%;
+    padding: 2rem;
+    margin: auto;
+
+}

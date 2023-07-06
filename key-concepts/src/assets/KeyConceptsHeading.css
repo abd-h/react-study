@@ -1,0 +1,36 @@
+.heading {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    color: white;
+     inset-block-start: 1rem;
+     margin-block-end: 2.5rem;
+     inset-inline-start: 25%;
+    justify-content: center;
+    align-items: center;
+   
+}
+
+img {
+    width: 100px;
+}
+
+.heading img {
+    max-width: 100%;
+    height: auto;
+}
+
+.heading h1,
+.heading p {
+    margin: 0;
+}
+
+.heading {
+    position: relative;
+    bottom: 15px;
+}
+
+.heading p {
+    font-weight: bold;
+}

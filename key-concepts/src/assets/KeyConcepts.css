@@ -1,0 +1,39 @@
+body {
+    background-color: rgb(19, 0, 35);
+}
+
+.container-outer {
+    position: relative;
+    width: 80%;
+    padding: 1rem 0.5rem;
+    display: flex;
+    color: white;
+    gap: 2rem;
+}
+.container-inner {
+    top: 50%;
+    max-width: 100%;
+    padding:  2rem;
+    display: flex;
+    flex-direction: column;
+    
+    align-items: center;
+    padding: 1rem 0;
+    background-color: rgb(27, 3, 78);
+}
+
+.container-inner .img {
+    width: 100px;
+
+}
+
+.container-outer img {
+    max-width: 100%;
+    height: auto;
+}
+
+.container-inner p {
+    padding: 0.5rem;
+    margin: 0 0.4rem;
+    text-align: center;
+}
