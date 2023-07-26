@@ -1,0 +1,29 @@
+html {
+    box-sizing: border-box;
+}
+*, 
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+.investment_form {
+    width: 40rem;
+    height: 20rem;
+    background-color: rgb(83, 186, 97);
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-inline: auto;
+}
+
+.investment_form p {
+    display: flex;
+    flex-direction: column;
+}
+
+.investment_form p input {
+    padding: 0.5rem;
+    margin: 0.2rem;
+    width: 15rem;
+}
