@@ -1,0 +1,22 @@
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+
+.goals-list {
+    
+    padding: 0.5rem 1rem;
+    width: 50%;
+    margin: auto;
+    color: black;
+    list-style: none;
+    text-align: left;
+    font-size: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}

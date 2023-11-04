@@ -1,0 +1,53 @@
+:root {
+    box-sizing: border-box;
+    --primary-color: rgb(138, 24, 85);
+}
+
+*,
+::before,
+::after {
+    box-sizing: inherit;
+}
+
+.form-control {
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    align-items: flex-start;
+    border: 4px solid transparent;
+    border-radius: 12px;
+    box-shadow: 0 2px 18px #c0c0c0;
+    margin: 2rem auto;
+    padding: 1.5rem;
+    gap: 0.5rem;
+}
+
+input {
+    width: 90%;
+    box-shadow: 0 0 0 2px #eee;
+    padding: 0.2rem 0.2rem;
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+label {
+    font-weight: bold;
+}
+
+.form-control.invalid input {
+    border-color: red;
+    background-color: #ffd7d7;
+}
+
+input:focus {
+    background-color: rgb(165, 255, 255);
+}
+
+/* button {
+    background-color: var(--primary-color);
+    padding: 0.3rem 2rem;
+    color: white;
+    font-weight: 300;
+    font-size: 1rem;
+} */
+
