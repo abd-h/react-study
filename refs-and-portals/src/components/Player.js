@@ -1,21 +1,22 @@
-import React, { useState, useRef } from "react";
+import { useState, useRef } from "react";
 
-import "../index.css";
 const Player = (props) => {
-    const playerName = useRef();
-  const [enteredPlayerName, setEnteredPlayerName] = useState(null);
-  
+  const playerName = useRef();
+  const [enteredName, setEnteredName] = useState(null);
 
-  const inputClickHandler = () => {
-      setEnteredPlayerName(playerName.current.value)
-          playerName.current.value = '';
-  };
+  const submitHandler = () => {
+    
+    setEnteredName(playerName.current.value);
+    playerName.current.value = "";
+  }
+
+
   return (
     <section id="player">
-      <h2>Welcome {enteredPlayerName ? enteredPlayerName : "unknown entity"}</h2>
+      <h2>Welcome {enteredName ? enteredName :"unKnown entity"}</h2>
       <p>
         <input ref={playerName} type="text" />
-        <button onClick={inputClickHandler}>Set Name</button>
+        <button onClick={submitHandler}>Set Name</button>
       </p>
     </section>
   );
