@@ -1,18 +1,36 @@
-import React from 'react';
-// import '../index.css'
-import clipboard from './media/no-projects.png'
-
+import React from "react";
+import logo from "./media/no-projects.png";
 const CreateNewProject = (props) => {
-    return (
-      <div className="bg-slate-900">
-        <header className="box-boder">
-          <img className="rounded-lg md:w-30" src={clipboard} alt="clipboard" />
-          <h1 className="text-3xl font-bold underline">No Project selected</h1>
-          <h2>Select a project or start a new one</h2>
-          <input type="button" value="Create New Project" />
-        </header>
-      </div>
-    );
-}
+  return (
+    <div className="mt-50">
+      <header
+        className={`
+        flex flex-col 
+        p-10 justify-center 
+        items-center 
+        outline  
+        flex-wrap 
+        m-20 
+        text-center
+        `}
+      >
+        <img className="w-20 block " src={logo} alt="clipboard" />
+        <h1 className="text-slate-600 font-extrabold text-lg tracking-wide m-5">
+          No Project Selected
+        </h1>
+        <p className="font-bold text-slate-400 tracking-wide">
+          Select a project or get started with the new one
+        </p>
+
+        <button
+          className="tracking-wider w-60  m-5 bg-slate-800 font-bold   py-3 px-1 rounded-xl text-slate-100"
+          type="button"
+        >
+          Create new button
+        </button>
+      </header>
+    </div>
+  );
+};
 
 export default CreateNewProject;
