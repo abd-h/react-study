@@ -1,10 +1,7 @@
 import React from "react";
 import logo from "./media/no-projects.png";
 const CreateNewProject = (props) => {
-  return (
-    <div className="mt-50">
-      <header
-        className={`
+    const newLocal = `
         flex flex-col 
         p-10 justify-center 
         items-center 
@@ -12,7 +9,11 @@ const CreateNewProject = (props) => {
         flex-wrap 
         m-20 
         text-center
-        `}
+        `;
+  return (
+    <div className="mt-50 self-center justify-self-center align-self-center">
+      <header
+        className={newLocal}
       >
         <img className="w-20 block " src={logo} alt="clipboard" />
         <h1 className="text-slate-600 font-extrabold text-lg tracking-wide m-5">
