@@ -1,13 +1,18 @@
 
 import './App.css';
-import AddProject from './components/AddProject';
-import CreateNewProject from './components/CreateNewProject';
+// import AddProjectForm from './components/AddProjectForm';
+import Todo from './components/Todo';
+import MainComponent from './components/MainComponent';
+// import ProjectForm from './components/ProjectForm';
 
 function App() {
   return (
-    <div className="outline flex  space-x-8 h-1/1 gap-72">
-      <AddProject />
-      <CreateNewProject />
+    <div className="flex w-full h-screen justify-center items-center bg-red-300">
+      <MainComponent /> 
+      {/**
+      <AddProjectForm /> 
+      <Todo />
+    **/}
     </div>
   );
 }

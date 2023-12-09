@@ -1,17 +1,22 @@
 import React from "react";
 import logo from "./media/no-projects.png";
+
+
 const CreateNewProject = (props) => {
+    const clickHandler = () => {
+        console.log('clicked');
+    }
+
     const newLocal = `
         flex flex-col 
         p-10 justify-center 
         items-center 
-        outline  
         flex-wrap 
         m-20 
         text-center
         `;
   return (
-    <div className="mt-50 self-center justify-self-center align-self-center">
+    <div className="mt-50 self-center justify-self-center align-self-center w-full">
       <header
         className={newLocal}
       >
@@ -24,12 +29,14 @@ const CreateNewProject = (props) => {
         </p>
 
         <button
-          className="tracking-wider w-60  m-5 bg-slate-800 font-bold   py-3 px-1 rounded-xl text-slate-100"
-          type="button"
+          className="tracking-wider w-60  m-5 bg-stone-700 font-bold   py-3 px-1 rounded-xl text-slate-100"
+                  type="button"
+                  onClick={clickHandler}
         >
-          Create new button
+          Create new Project
         </button>
-      </header>
+          </header>
+          
     </div>
   );
 };
