@@ -1,8 +1,9 @@
-import React, { useRef, forwardRef, useImperativeHandle } from "react";
+import React, { useState, useRef, forwardRef, useImperativeHandle } from "react";
+
 
 const Button = forwardRef(function Button(props, ref) {
   const vRef = useRef();
-
+  
   useImperativeHandle(ref, () => {
     return {
       open() {
@@ -11,9 +12,13 @@ const Button = forwardRef(function Button(props, ref) {
     };
   });
 
+
+
   const changeHandler = (identifier, value) => {
+ 
     if (identifier == props.children && identifier == "Save") {
       //Date extraction methods
+     
       let year = new Date(props.date.current.value).getFullYear(),
         month = new Date(props.date.current.value).getMonth(),
         day = new Date(props.date.current.value).getDay();
@@ -35,6 +40,14 @@ const Button = forwardRef(function Button(props, ref) {
       props.title.current.value = "";
       props.description.current.value = "";
       props.date.current.value = "";
+    } else if (identifier === "Add Task") {
+      props.onInputValue(props.task.current.value);
+      props.task.current.value = "";
+    } else if (identifier === "Clear") {
+      console.log('clicked:', props.val);
+      console.log(props.inputRef[props.val]);
+      props.onClearBtn(props.val);
+      props.inputRef[props.val] = "";
     }
   };
   return (
@@ -43,9 +56,11 @@ const Button = forwardRef(function Button(props, ref) {
       onClick={(e) => changeHandler(props.children, e)}
       className={`rounded 
       ${
-        props.children == "Cancel" || props.children == "Delete"
-          ? "bg-white text-black hover:bg-slate-300"
-          : "bg-black text-white"
+        props.children == "Save"
+          ? "bg-black text-white"
+          : props.children === "Clear"
+          ? "bg-slate-100 hover:text-red-700"
+          : "bg-white text-black hover:bg-slate-200"
       } 
 
       font-bold py-3 px-8 text-lg`}

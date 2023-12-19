@@ -1,9 +1,42 @@
-import React from "react";
+import React, { useState, useRef, forwardRef, useImperativeHandle } from "react";
 import Button from "./Button";
+import Todo from "./Todo";
 
 const AddProjectForm = (props) => {
+    const ref = useRef();
+    const task = useRef();
+    const [inputValue, setInputValue] = useState([])
+
+    useImperativeHandle(ref, () => {
+        return {
+            taskValue() {
+               return task.current.value;
+            }
+        }
+    })
+
+    const addTask = (task) => {
+      console.log(task);
+    };
+
+    // const clickedHandler = () => {
+    //     setInputValue(task.current.value);
+        
+    // }
+    
+   
+    function newResult(result) {
+        console.log(result == /\s/g);
+        if (result.length > 0 && result !== 0 && result !== /\s/g) {
+            setInputValue((prev) => prev.concat(result));
+        };
+     
+    }
+    // console.log(newResult(inputValue));
+    // console.log(inputValue);
+
   return (
-    <div className="my-3 flex flex-col justify-center  outline w-3/4">
+    <div className="my-3 flex flex-col justify-center max-w-3/4">
       <header className="flex flex-col text-xl border-b-4 border-b-slate-400">
         <div className="flex justify-between items-center">
           <h1 className="text-5xl my-6 font-bold">Learning React</h1>
@@ -16,16 +49,18 @@ const AddProjectForm = (props) => {
         </p>
       </header>
       <h2 className="font-bold text-5xl my-6">Task</h2>
-      <form className="flex content-center items-center gap-1 pb-4">
-        <p className="flex flex-col">
+      <form className="flex flex-col">
+        <p className="flex content-center items-center gap-2 pb-4">
           <input
-            className="text-lg h-12 self-start w-96 py-1 rounded"
+            ref={task}
+            className="text-xl  tracking-wide caret-black px-1 font-sans font-sami-bold h-12 self-start w-96 py-1 rounded bg-slate-200"
             type="text"
             id="task"
             name="task"
           />
+          <Button task={task} onInputValue={newResult} onAddTask={addTask}>Add Task</Button>
         </p>
-        <Button>Add Task</Button>
+        <Todo taskValue={inputValue} />
       </form>
     </div>
   );
