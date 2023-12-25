@@ -34,8 +34,14 @@ const AsideProjectForm = forwardRef(function AsideProjectForm(props, ref) {
   const onChangeHandler = (e) => {
     setInputVal(e.target.value);
   };
-  
- // console.log(ref.current.description());
+
+  // const curriedRefs = {
+  //   title: ref.current.resultV(),
+  //   description: ref.current.description(),
+  //   date: ref.current.date()
+  // }
+
+  // props.onCurriedRefs(curriedRefs)
 
   return (
     <form className="flex flex-col justify-center w-full">

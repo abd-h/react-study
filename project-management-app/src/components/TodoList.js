@@ -13,31 +13,23 @@ const TodoList = (props) => {
         }));
   } 
   const container = props.inputRef.filter((a => a !== "" && !/^\s+$/.test(a)));
-  function t(val) {
-    return val === '' || /^\s+$/g.test(val);
-  }
-  console.log('Function t: ', t(''));
-
-  console.log(props.inputRef);
+  
   console.log(container.length);
-  console.log(container.length == 0);
-    
+  console.log(props.inputRef.length)
+  
     return (
       <Fragment>
         {props.inputRef.map((value, i, array) => {
-          console.log(value === "");
-          console.log(cleared[i]);
-          // props.onClearedUl(cleared[i])
+          // console.log(value === "");
           return (
-            container.length > 0 && (
+            /^\s+$/g.test(value) !== true && (
               <li
                 className={`flex justify-between content-center items-center p-2 font-semibold ${
                   cleared[i] ? "hidden" : "visible"
                 }`}
                 key={i}
               >
-                {value && value}
-                {cleared[i] === true ? "Enter Task" : value}
+                <span>{value}</span>
                 <Button inputRef={props.inputRef} val={i} onClearBtn={clearBtn}>
                   Clear
                 </Button>

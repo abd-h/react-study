@@ -6,6 +6,16 @@ const AddProject = forwardRef(function AddProject(props, ref) {
     // console.log(ref.current);
     setAddProject(true);
   };
+
+  const handleClick = () => {
+    console.log('click from h1');
+    props.onAddHeaders(true);
+  }
+
+  // console.log(/^\s*$/g.test(props.title))
+  // console.log(props.title === undefined);
+
+  console.log(props.title);
   return (
     <aside
       ref={ref}
@@ -20,13 +30,13 @@ const AddProject = forwardRef(function AddProject(props, ref) {
       >
         + Add Project
       </button>
-      <section className={`rounded tracking-wide w-1/2 justify-self-center mt-12 p-3 ${
-            props.value.length == 0 ? "hidden" : "bg-stone-700"
-          }`}>
-        <h2
-          className={`text-xl font-bold  w-auto`}
-        >
-          {props.value}
+      <section
+        className={`rounded tracking-wide w-1/2 justify-self-center mt-12 p-3 ${
+          /^\s*$/g.test(props.title) || props.title === undefined ? "hidden" : "bg-stone-700"
+        }`}
+      >
+        <h2 className={`cursor-pointer text-xl font-bold  w-auto`} onClick={handleClick} ref={ref}>
+          {props.title}
         </h2>
       </section>
     </aside>

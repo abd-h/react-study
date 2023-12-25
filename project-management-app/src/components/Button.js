@@ -16,8 +16,9 @@ const Button = forwardRef(function Button(props, ref) {
 
   const changeHandler = (identifier, value) => {
  
-    if (identifier == props.children && identifier == "Save") {
+    if (identifier == "Save") {
       //Date extraction methods
+      console.log(props.description.current.value);
      
       let year = new Date(props.date.current.value).getFullYear(),
         month = new Date(props.date.current.value).getMonth(),
@@ -31,7 +32,14 @@ const Button = forwardRef(function Button(props, ref) {
           month: "long",
         }),
       };
-      props.onAddProject(props.title.current.value);
+      
+        
+      
+      props.onAddProject(
+        props.title.current.value,
+        props.description.current.value,
+        props.date.current.value
+      );
 
       props.title.current.value = "";
       props.description.current.value = "";
@@ -48,6 +56,9 @@ const Button = forwardRef(function Button(props, ref) {
       console.log(props.inputRef[props.val]);
       props.onClearBtn(props.val);
       props.inputRef[props.val] = "";
+    } else if (identifier === "Delete") {
+      console.log('Delete Button clicked');
+      props.onDeleted(false);
     }
   };
   return (

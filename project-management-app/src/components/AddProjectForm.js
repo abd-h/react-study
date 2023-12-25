@@ -7,13 +7,13 @@ const AddProjectForm = (props) => {
     const task = useRef();
     const [inputValue, setInputValue] = useState([])
 
-    useImperativeHandle(ref, () => {
-        return {
-            taskValue() {
-               return task.current.value;
-            }
-        }
-    })
+    // useImperativeHandle(ref, () => {
+    //     return {
+    //         taskValue() {
+    //            return task.current.value;
+    //         }
+    //     }
+    // })
 
     const addTask = (task) => {
       console.log(task);
@@ -34,18 +34,22 @@ const AddProjectForm = (props) => {
     }
     // console.log(newResult(inputValue));
     // console.log(inputValue);
+  
+    console.log(props.projectHeaders === undefined);
 
   return (
     <div className="my-3 flex flex-col justify-center max-w-3/4">
       <header className="flex flex-col text-xl border-b-4 border-b-slate-400">
         <div className="flex justify-between items-center">
-          <h1 className="text-5xl my-6 font-bold">Learning React</h1>
-          <Button>Delete</Button>
+          <h1 className="text-5xl my-6 font-bold"> 
+            {props.projectHeaders.title}
+             </h1>
+          <Button onDeleted={props.onDeleted}>Delete</Button>
         </div>
-        <p className="text-slate-700 font-bold text-2xl">Dec 29, 2024</p>
+        <p className="text-slate-700 font-bold text-2xl">{ props.projectHeaders.date.split("-").reverse().join('-')} </p>
         <p className="py-6 p-r-1 font-semibold ">
-          Learning React from the ground up start With the Basics, finish with
-          advanced knowledge.
+
+          {props.projectHeaders.description}
         </p>
       </header>
       <h2 className="font-bold text-5xl my-6">Task</h2>
