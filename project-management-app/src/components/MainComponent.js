@@ -45,15 +45,19 @@ const MainComponent = forwardRef(function MainComponent(props, ref) {
         description={projectTitle.description}
         date={projectTitle.date}
         onclick={addProjectHandler}
-       
       />
       {btn ? (
-        <AsideProjectForm ref={inputRef} onAddProject={addProject} onCurriedRefs={onCurriedRefs} />
+        <AsideProjectForm
+          ref={inputRef}
+          onAddProject={addProject}
+          onCurriedRefs={onCurriedRefs}
+        />
       ) : (
         <CreateNewProject
           title={projectTitle.title}
           description={projectTitle.description}
-            date={projectTitle.date}
+          date={projectTitle.date}
+          onclick={addProjectHandler}
         />
       )}
     </div>

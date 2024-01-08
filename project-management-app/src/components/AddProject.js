@@ -1,25 +1,23 @@
-import React, { useState, forwardRef } from "react";
+import React, { useState, forwardRef, useRef, useEffect } from "react";
 
 const AddProject = forwardRef(function AddProject(props, ref) {
-  const [addProject, setAddProject] = useState("");
-  const clickHandler = () => {
-    // console.log(ref.current);
-    setAddProject(true);
-  };
+  // const [addProject, setAddProject] = useState([]);
+  const [title, setTitle] = useState();
+ 
+  
 
   const handleClick = () => {
     console.log('click from h1');
     props.onAddHeaders(true);
   }
 
-  // console.log(/^\s*$/g.test(props.title))
-  // console.log(props.title === undefined);
 
-  console.log(props.title);
+
+  
   return (
     <aside
       ref={ref}
-      className="bg-black text-white w-2/4 flex mt-16 justify-self-start flex flex-col items-center rounded-tr-2xl h-screen"
+      className="bg-black text-white w-2/4 flex mt-16 justify-self-start flex-col items-center rounded-tr-2xl h-screen"
       id="name"
     >
       <h2 className="text-3xl m-16 font-extrabold ">Your Projects</h2>
@@ -35,7 +33,7 @@ const AddProject = forwardRef(function AddProject(props, ref) {
           /^\s*$/g.test(props.title) || props.title === undefined ? "hidden" : "bg-stone-700"
         }`}
       >
-        <h2 className={`cursor-pointer text-xl font-bold  w-auto`} onClick={handleClick} ref={ref}>
+        <h2 className={`cursor-pointer text-xl font-bold  w-auto`} onClick={handleClick}>
           {props.title}
         </h2>
       </section>

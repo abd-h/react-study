@@ -1,10 +1,14 @@
-import React, { useState, useRef, forwardRef, useImperativeHandle } from "react";
+import React, {
+  useState,
+  useRef,
+  forwardRef,
+  useImperativeHandle,
+} from "react";
 import Button from "./Button";
 
 const AsideProjectForm = forwardRef(function AsideProjectForm(props, ref) {
-
   // console.log(props);
-  const titleRefs = useRef(); 
+  const titleRefs = useRef();
   const description = useRef();
   const dateRef = useRef();
 
@@ -12,25 +16,24 @@ const AsideProjectForm = forwardRef(function AsideProjectForm(props, ref) {
     return {
       resultV() {
         return titleRefs.current.value;
-      }, 
+      },
       description() {
-        return description.current.value
-      }, 
+        return description.current.value;
+      },
       date() {
         return dateRef.current.value;
-      }
-    }
-  })
+      },
+    };
+  });
 
- 
   const [val, setVal] = useState();
   const [inputVal, setInputVal] = useState();
   const clickHandler = (e) => {
     setVal(e.target.value);
   };
-  const newV = {
-    name: val,
-  };
+  // const newV = {
+  //   name: val,
+  // };
   const onChangeHandler = (e) => {
     setInputVal(e.target.value);
   };
@@ -42,6 +45,7 @@ const AsideProjectForm = forwardRef(function AsideProjectForm(props, ref) {
   // }
 
   // props.onCurriedRefs(curriedRefs)
+
 
   return (
     <form className="flex flex-col justify-center w-full">
@@ -90,6 +94,7 @@ const AsideProjectForm = forwardRef(function AsideProjectForm(props, ref) {
           id="description"
           rows="3"
           cols="33"
+          required
         ></textarea>
       </label>
 
@@ -106,6 +111,7 @@ const AsideProjectForm = forwardRef(function AsideProjectForm(props, ref) {
           type="date"
           name="date"
           placeholder="dd.mm.yyyy"
+          required
         />
       </label>
     </form>

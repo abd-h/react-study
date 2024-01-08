@@ -4,7 +4,7 @@ import logo from "./media/no-projects.png";
 
 const CreateNewProject = (props) => {
     const clickHandler = () => {
-        console.log('clicked');
+        console.log('clicked from CreateNew Project');
     }
 
     const newLocal = `
@@ -31,7 +31,7 @@ const CreateNewProject = (props) => {
         <button
           className="tracking-wider w-60  m-5 bg-stone-700 font-bold   py-3 px-1 rounded-xl text-slate-100"
                   type="button"
-                  onClick={clickHandler}
+                  onClick={props.onclick}
         >
           Create new Project
         </button>

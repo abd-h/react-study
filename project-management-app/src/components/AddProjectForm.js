@@ -3,27 +3,14 @@ import Button from "./Button";
 import Todo from "./Todo";
 
 const AddProjectForm = (props) => {
-    const ref = useRef();
     const task = useRef();
     const [inputValue, setInputValue] = useState([])
 
-    // useImperativeHandle(ref, () => {
-    //     return {
-    //         taskValue() {
-    //            return task.current.value;
-    //         }
-    //     }
-    // })
+   
 
     const addTask = (task) => {
       console.log(task);
     };
-
-    // const clickedHandler = () => {
-    //     setInputValue(task.current.value);
-        
-    // }
-    
    
     function newResult(result) {
         console.log(result == /\s/g);
@@ -32,8 +19,6 @@ const AddProjectForm = (props) => {
         };
      
     }
-    // console.log(newResult(inputValue));
-    // console.log(inputValue);
   
     console.log(props.projectHeaders === undefined);
 

@@ -12,28 +12,9 @@ const Button = forwardRef(function Button(props, ref) {
     };
   });
 
-
-
   const changeHandler = (identifier, value) => {
  
     if (identifier == "Save") {
-      //Date extraction methods
-      console.log(props.description.current.value);
-     
-      let year = new Date(props.date.current.value).getFullYear(),
-        month = new Date(props.date.current.value).getMonth(),
-        day = new Date(props.date.current.value).getDay();
-
-      const result = {
-        title: props.title.current.value,
-        description: props.description.current.value,
-        // date: `${day}/${month}/${year}`,
-        date: new Date(props.date.current.value).toDateString("en-GB", {
-          month: "long",
-        }),
-      };
-      
-        
       
       props.onAddProject(
         props.title.current.value,
@@ -44,10 +25,12 @@ const Button = forwardRef(function Button(props, ref) {
       props.title.current.value = "";
       props.description.current.value = "";
       props.date.current.value = "";
+
     } else if (identifier == props.children && identifier == "Cancel") {
       props.title.current.value = "";
       props.description.current.value = "";
       props.date.current.value = "";
+
     } else if (identifier === "Add Task") {
       props.onInputValue(props.task.current.value);
       props.task.current.value = "";
