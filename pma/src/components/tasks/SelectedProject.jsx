@@ -1,8 +1,4 @@
-import { useContext} from "react";
-
-import Input from "../input/Input";
 import Tasks from "./Tasks";
-import { AddProjectContext } from "../../store/AddProjectContext";
 
 const SelectedProject = ({ projects, onDelete }) => {
  

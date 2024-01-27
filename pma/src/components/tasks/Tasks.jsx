@@ -14,7 +14,7 @@ const Tasks = (props) => {
       {tasks.length > 0 && (
         <ul className="flex my-8 flex-col gap-4">
           {tasks.map((task) => {
-            console.log(task.id);
+            
             return (
               <Fragment key={task.id}>
                 {selectedProjectId === task.projectId && (

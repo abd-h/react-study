@@ -27,7 +27,7 @@ const Modal = forwardRef(function Modal({ children, btnCaption }, ref) {
         </button>
       </form>
     </dialog>,
-    document.getElementById("root-modal")
+    document.getElementById("task-modal")
   );
 });
 
