@@ -5,10 +5,10 @@ import CartModal from "./CartModal";
 
 const Header = () => {
   const modal = useRef();
-  const { shoppingCart, handleUpdateCartItemQuantity } =
+  const { items, updateItemQuantity } =
     useContext(AddItemsToCtx);
 
-  const cartQuantity = shoppingCart.items.length;
+  const cartQuantity = items.length;
 
   console.log(cartQuantity);
 
@@ -37,7 +37,7 @@ const Header = () => {
     <React.Fragment>
       <CartModal
         ref={modal}
-        onUpdateCartItemQuantity={handleUpdateCartItemQuantity}
+        onUpdateCartItemQuantity={updateItemQuantity}
         title="Your Cart"
         actions={modalActions}
       />

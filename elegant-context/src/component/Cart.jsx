@@ -7,10 +7,10 @@ const cartItemsActionsCss = `
 `;
 
 const Cart = () => {
-  const { shoppingCart, handleUpdateCartItemQuantity } =
+  const { items, updateItemQuantity } =
     useContext(AddItemsToCtx);
 
-  const { items } = shoppingCart;
+  
 
   const totalPrice = items.reduce(
     (acc, item) => acc + item.price * item.quantity,
@@ -38,14 +38,14 @@ const Cart = () => {
                 </div>
                 <div className="text-base flex gap-2 items-center">
                   <button
-                    onClick={() => handleUpdateCartItemQuantity(item.id, -1)}
+                    onClick={() => updateItemQuantity(item.id, -1)}
                     className={cartItemsActionsCss}
                   >
                     -
                   </button>
                   <span>{item.quantity} </span>
                   <button
-                    onClick={() => handleUpdateCartItemQuantity(item.id, 1)}
+                    onClick={() => updateItemQuantity(item.id, 1)}
                     className={cartItemsActionsCss}
                   >
                     +
