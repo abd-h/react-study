@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { DeleteConfirmationStyles } from "./Styles";
 // import { ProgressBar } from "./Styles";
 import ProgressBar from "./ProgressBar";

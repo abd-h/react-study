@@ -7,7 +7,6 @@ import Places from "./Places";
 import Modal from "./Modal";
 import DeleteConfirmation from "./DeleteConfirmation";
 import { sortPlacesByDistance } from "../loc";
-import { AVAILABLE_PLACES } from "../data";
 
 const PlacesContainer = () => {
   const {
@@ -24,7 +23,7 @@ const PlacesContainer = () => {
   useEffect(() => {
     navigator.geolocation.getCurrentPosition((position) => {
       const sortedPlaces = sortPlacesByDistance(
-        AVAILABLE_PLACES,
+        availablePlaces,
         position.coords.latitude,
         position.coords.longitude
       );

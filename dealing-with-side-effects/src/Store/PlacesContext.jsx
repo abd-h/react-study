@@ -3,7 +3,6 @@ import React, {
   useRef,
   useReducer,
   useCallback,
-  useState,
 } from "react";
 
 import { AVAILABLE_PLACES } from "../data";
