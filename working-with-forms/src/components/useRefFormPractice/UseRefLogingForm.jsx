@@ -1,26 +1,25 @@
 import React, { useState, useRef } from "react";
-import UseRefInput from "../useRefFormPractice/UseRefInput";
+import UseRefInput from "./UseRefInput";
 
 const UseRefLogingForm = () => {
-  const [inputValue, setInputValue] = useState({
-    email: "",
-    password: "",
-  });
+  const [formIsInvalid, setFormIsInvalid] = useState(false);
   const email = useRef();
   const password = useRef();
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    setInputValue((prevState) => ({
-      ...prevState,
-      email: email.current.value,
-      password: password.current.value,
-    }));
+    const enteredEmail = email.current.value;
+    const enteredPassword = password.current.value;
+    const formIsValid = enteredEmail.includes("@");
+
+    if (!formIsValid) {
+      setFormIsInvalid(true);
+      return;
+    }
+    setFormIsInvalid(false);
   };
-
-  console.log(inputValue.email);
-
+  console.log(formIsInvalid);
   return (
     <form
       onSubmit={handleSubmit}
@@ -28,26 +27,25 @@ const UseRefLogingForm = () => {
     >
       <h2 className="text-white font-sami-bold text-3xl my-4">Login</h2>
       <section className="flex justify-start w-full gap-8">
-        <UseRefInput
-          ref={email}
-          label="email"
-          type="email"
-          name="email"
-          required
-        />
+        <UseRefInput ref={email} label="email" type="email" name="email" />
         <UseRefInput
           ref={password}
           label="password"
           type="password"
           name="password"
-          required
         />
       </section>
+      {formIsInvalid && (
+        <p className="text-yellow-600">Please enter valid email</p>
+      )}
       <p
         className="flex gap-4 mt-4 justify-end 
       "
       >
-        <button type="reset" className="py-2 px-4 font-thin capitalize text-lg tracking-wide rounded-[4px] hover:bg-[#0a3e3a]">
+        <button
+          type="reset"
+          className="py-2 px-4 font-thin capitalize text-lg tracking-wide rounded-[4px] hover:bg-[#0a3e3a]"
+        >
           reset
         </button>
         <button
