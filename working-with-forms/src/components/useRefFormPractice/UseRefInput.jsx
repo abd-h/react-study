@@ -1,7 +1,7 @@
 import React, { useState, forwardRef, useRef } from "react";
 const bgLinearCss = "[linear-gradient(#d0d6d9,#b1b4ba)]";
 
-const Input = forwardRef(function Input({ label, ...props }, ref) {
+const UseRefInput = forwardRef(function UseRefInput({ label, ...props }, ref) {
   return (
     <p className=" flex-wrap flex flex-col">
       <label
@@ -20,4 +20,4 @@ const Input = forwardRef(function Input({ label, ...props }, ref) {
   );
 });
 
-export default Input;
+export default UseRefInput;

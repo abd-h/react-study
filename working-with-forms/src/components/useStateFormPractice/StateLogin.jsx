@@ -1,11 +1,10 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import Input from "./Input";
 
-const LoginForm = () => {
-  
+const StateLogin = () => {
   const [enteredValue, setEnteredValue] = useState({
-    email: '',
-    password: ''
+    email: "",
+    password: "",
   });
   const [edit, setEdit] = useState({
     email: false,
@@ -13,18 +12,17 @@ const LoginForm = () => {
   });
 
   const handleSubmit = (event) => {
-    event.preventDefault()
+    event.preventDefault();
     console.log(enteredValue.email);
     console.log(enteredValue.password);
   };
 
   function handleInputChange(identifier, value) {
-    setEnteredValue(prevValue => ({
+    setEnteredValue((prevValue) => ({
       ...prevValue,
-      [identifier]: value
-    }))
+      [identifier]: value,
+    }));
   }
-
 
   return (
     <form
@@ -38,15 +36,14 @@ const LoginForm = () => {
           type="email"
           name="email"
           required
-          onChange={ e => handleInputChange('email', e.target.value) }
-        
+          onChange={(e) => handleInputChange("email", e.target.value)}
         />
         <Input
           label="password"
           type="password"
           name="password"
           required
-          onChange={ e => handleInputChange('password', e.target.value) }
+          onChange={(e) => handleInputChange("password", e.target.value)}
         />
       </section>
       <p
@@ -66,4 +63,4 @@ const LoginForm = () => {
   );
 };
 
-export default LoginForm;
+export default StateLogin;

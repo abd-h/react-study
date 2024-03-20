@@ -1,30 +1,25 @@
 import React, { useState, useRef } from "react";
-import Input from "./Input";
+import UseRefInput from "../useRefFormPractice/UseRefInput";
 
-const LoginForm = () => {
-  
-  const [enteredValue, setEnteredValue] = useState({
-    email: '',
-    password: ''
+const UseRefLogingForm = () => {
+  const [inputValue, setInputValue] = useState({
+    email: "",
+    password: "",
   });
-  const [edit, setEdit] = useState({
-    email: false,
-    password: false,
-  });
+  const email = useRef();
+  const password = useRef();
 
   const handleSubmit = (event) => {
-    event.preventDefault()
-    console.log(enteredValue.email);
-    console.log(enteredValue.password);
+    event.preventDefault();
+
+    setInputValue((prevState) => ({
+      ...prevState,
+      email: email.current.value,
+      password: password.current.value,
+    }));
   };
 
-  function handleInputChange(identifier, value) {
-    setEnteredValue(prevValue => ({
-      ...prevValue,
-      [identifier]: value
-    }))
-  }
-
+  console.log(inputValue.email);
 
   return (
     <form
@@ -33,27 +28,26 @@ const LoginForm = () => {
     >
       <h2 className="text-white font-sami-bold text-3xl my-4">Login</h2>
       <section className="flex justify-start w-full gap-8">
-        <Input
+        <UseRefInput
+          ref={email}
           label="email"
           type="email"
           name="email"
           required
-          onChange={ e => handleInputChange('email', e.target.value) }
-        
         />
-        <Input
+        <UseRefInput
+          ref={password}
           label="password"
           type="password"
           name="password"
           required
-          onChange={ e => handleInputChange('password', e.target.value) }
         />
       </section>
       <p
         className="flex gap-4 mt-4 justify-end 
       "
       >
-        <button className="py-2 px-4 font-thin capitalize text-lg tracking-wide rounded-[4px] hover:bg-[#0a3e3a]">
+        <button type="reset" className="py-2 px-4 font-thin capitalize text-lg tracking-wide rounded-[4px] hover:bg-[#0a3e3a]">
           reset
         </button>
         <button
@@ -66,4 +60,4 @@ const LoginForm = () => {
   );
 };
 
-export default LoginForm;
+export default UseRefLogingForm;
