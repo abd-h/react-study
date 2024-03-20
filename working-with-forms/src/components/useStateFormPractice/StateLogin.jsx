@@ -6,22 +6,34 @@ const StateLogin = () => {
     email: "",
     password: "",
   });
-  const [edit, setEdit] = useState({
+  const [didEdit, setDidEdit] = useState({
     email: false,
     password: false,
   });
 
+  const emailIsInvalid = didEdit.email && !enteredValue.email.includes('@')
+
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log(enteredValue.email);
-    console.log(enteredValue.password);
   };
 
-  function handleInputChange(identifier, value) {
-    setEnteredValue((prevValue) => ({
-      ...prevValue,
+  const handleChange = (identifier, value) => {
+    setEnteredValue(prev => ({
+      ...prev,
       [identifier]: value,
-    }));
+    }))
+    setDidEdit(prevEdit => ({
+      ...prevEdit,
+      [identifier]: false
+    }))
+  }
+
+  function handleInputBlur(identifier) {
+    setDidEdit(prev => ({
+      ...prev,
+      [identifier]: true
+    }))
   }
 
   return (
@@ -36,16 +48,22 @@ const StateLogin = () => {
           type="email"
           name="email"
           required
-          onChange={(e) => handleInputChange("email", e.target.value)}
+          onBlur={(e) => handleInputBlur("email", e.target.value)}
+          onChange={ (e) => handleChange("email", e.target.value) }
+          value={enteredValue.email}
         />
         <Input
           label="password"
           type="password"
           name="password"
           required
-          onChange={(e) => handleInputChange("password", e.target.value)}
+          onBlur={(e) => handleInputBlur("password", e.target.value)}
+          onChange={ (e) => handleChange("password", e.target.value) }
+          value={enteredValue.password}
         />
       </section>
+
+      {emailIsInvalid && <p>Please enter valid email</p>}
       <p
         className="flex gap-4 mt-4 justify-end 
       "
