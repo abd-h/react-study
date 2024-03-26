@@ -1,40 +1,32 @@
-import React, { useState } from "react";
+import React from "react";
 import Input from "./Input";
+import { isEmail, hasMinLength, isNotEmpty } from "../utility/validation";
+import { useInput } from "../hooks/useInput";
 
 const StateLogin = () => {
-  const [enteredValue, setEnteredValue] = useState({
-    email: "",
-    password: "",
-  });
-  const [didEdit, setDidEdit] = useState({
-    email: false,
-    password: false,
-  });
+  const {
+    handleInputChange: handleEmailChange,
+    handleInputBlur: handleEmailBlur,
+    value: emailValue,
+    hasError: emailHasError,
+  } = useInput("", (value) => isEmail(value) && isNotEmpty(value));
 
-  const emailIsInvalid = didEdit.email && !enteredValue.email.includes('@')
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    console.log(enteredValue.email);
+  const {
+    handleInputChange: handlePasswordChange,
+    handleInputBlur: handlePasswordBlur,
+    value: passwordValue,
+    hasError: passwordHasError,
+  } = useInput("", (value) => isNotEmpty && hasMinLength(value, 6));
+  
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (emailHasError || passwordHasError) {
+      return;
+    }
+    console.log(emailValue);
+    console.log(passwordValue);
+    e.target.reset();
   };
-
-  const handleChange = (identifier, value) => {
-    setEnteredValue(prev => ({
-      ...prev,
-      [identifier]: value,
-    }))
-    setDidEdit(prevEdit => ({
-      ...prevEdit,
-      [identifier]: false
-    }))
-  }
-
-  function handleInputBlur(identifier) {
-    setDidEdit(prev => ({
-      ...prev,
-      [identifier]: true
-    }))
-  }
 
   return (
     <form
@@ -43,32 +35,41 @@ const StateLogin = () => {
     >
       <h2 className="text-white font-sami-bold text-3xl my-4">Login</h2>
       <section className="flex justify-start w-full gap-8">
-        <Input
-          label="email"
-          type="email"
-          name="email"
-          required
-          onBlur={(e) => handleInputBlur("email", e.target.value)}
-          onChange={ (e) => handleChange("email", e.target.value) }
-          value={enteredValue.email}
-        />
-        <Input
-          label="password"
-          type="password"
-          name="password"
-          required
-          onBlur={(e) => handleInputBlur("password", e.target.value)}
-          onChange={ (e) => handleChange("password", e.target.value) }
-          value={enteredValue.password}
-        />
+        <section className="flex flex-col">
+          <Input
+            label="email"
+            type="email"
+            name="email"
+            required
+            onChange={handleEmailChange}
+            onBlur={handleEmailBlur}
+            // value={emailValue}
+          />
+          {emailHasError && (
+            <p className="text-red-200">Please enter valid email</p>
+          )}
+        </section>
+        <section className="flex flex-col">
+          <Input
+            label="password"
+            type="password"
+            name="password"
+            required
+            onChange={handlePasswordChange}
+            onBlur={handlePasswordBlur}
+            // value={passwordValue}
+          />
+          {passwordHasError && (
+            <p className=" text-red-200">Please enter valid password</p>
+          )}
+        </section>
       </section>
 
-      {emailIsInvalid && <p>Please enter valid email</p>}
       <p
         className="flex gap-4 mt-4 justify-end 
       "
       >
-        <button className="py-2 px-4 font-thin capitalize text-lg tracking-wide rounded-[4px] hover:bg-[#0a3e3a]">
+        <button type="reset"  className="py-2 px-4 font-thin capitalize text-lg tracking-wide rounded-[4px] hover:bg-[#0a3e3a]">
           reset
         </button>
         <button
