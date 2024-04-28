@@ -1,2 +1,0 @@
-
-import { fetchAvailableMeals } from "../http";

@@ -1,62 +1,69 @@
-import React, { useContext } from 'react';
-import CartModal from './CartModal';
-import { MealsCxt } from '../../store/MealsContext';
-import { fetchAvailableMeals } from '../../http';
+import React, { useContext, useState } from "react";
+import CartModal from "./CartModal";
+import { MealsCxt } from "../../store/MealsContext";
+import { fetchAvailableMeals } from "../../http";
 
-import basket from "../../assets/images.png";
-import { useFetch } from '../../hooks/useFetch';
+
+import { useFetch } from "../../hooks/useFetch";
+import SelectedMeals from "./SelectedMeals";
+import CheckoutForm from "./CheckoutForm";
+import CartLogo from "./CartLogo";
 
 const Cart = () => {
-
   const { fetchedData } = useFetch(fetchAvailableMeals, []);
-  // const totalPrice = fetchedData.reduce((acc, meals) => console.log(meals.price))
 
-  // console.log(totalPrice);
+  const {
+    handleClick,
+    handleCheckout,
+    isCheckout,
+    handleClickCart,
+    meals,
+  } = useContext(MealsCxt);
 
- const {
-   handleClick,
-   handleClickCart,
-   handleAddItemsToCart,
-   updateItemQuantity,
- } = useContext(MealsCxt);
-    return (
-      <section className=" text-yellow-400 bg-transparent text-xl font-thin ">
-        <div className="cursor-pointer" onClick={handleClick}>
-          <img
-            className=" opacity-1 w-10 rounded-3xl shadow-transparent cursor-pointer"
-            src={basket}
-            alt="basket"
-          />
-        </div>
-        <CartModal>
-          {fetchedData.length === 0 && <p>No items in the cart</p>}
+  const cartQuantity = meals.reduce((acc, item) => (acc += item.quantity), 0);
 
-          {fetchedData.length > 0 && (
-            <ul className="w-3/4 my-8 mx-16  bg-slate-600 text-center">
-              {fetchedData.map((meals) => {
-                const formatedPrice = `${parseInt(meals.price).toFixed(2)}`;
 
-                return (
-                  <li key={meals.id}>
-                    <div>
-                      <span>{meals.name}</span>
-                      <span>{formatedPrice} </span>
-                    </div>
-                    <div>
-                      <button onClick={() => updateItemQuantity(meals.id, -1)}>
-                        -
-                      </button>
-                      { meals.quantity }
-                      <button onClick={() => updateItemQuantity(meals.id, 1)}>+</button>
-                    </div>
-                  </li>
-                );
-              })}
-            </ul>
-          )}
-        </CartModal>
-      </section>
-    );
-}
+  const totalMealPrice = meals.reduce((acc, price) => {
+    return (acc += parseFloat(price.price) * price.quantity);
+  }, 0);
+
+  return (
+    <section className="rounded text-yellow-400 bg-[rgb(34,25,0)] text-xl font-thin overflow-hidden ">
+      <CartLogo cartQuantity={cartQuantity} onHandleClick={handleClick} />
+      <CartModal>
+        {isCheckout && <CheckoutForm totalMealPrice={totalMealPrice} />}
+        {meals.length === 0 && (
+          <p className="text-2xl p-4">No items in the cart</p>
+        )}
+
+        {!isCheckout && meals.length > 0 && <SelectedMeals />}
+        {!isCheckout && (
+          <div className="flex flex-col">
+            <div className="mx-8">
+              <strong> Total = £{totalMealPrice}</strong>
+            </div>
+
+            <div>
+              <button
+                className=" hover:bg-[yellow] text-black font-bold text-sm py-2 px-4 m-4 rounded-[4px]"
+                onClick={handleClickCart}
+              >
+                Continue Shopping
+              </button>
+              {cartQuantity !== 0 && (
+                <button
+                  className="bg-[#cdb500] text-black font-bold text-sm py-2 px-4 m-4 rounded-[4px]"
+                  onClick={handleCheckout}
+                >
+                  Checkout
+                </button>
+              )}
+            </div>
+          </div>
+        )}
+      </CartModal>
+    </section>
+  );
+};
 
 export default Cart;

@@ -8,18 +8,19 @@ import { MealsCxt } from "../store/MealsContext";
 const Product = () => {
   const { isFetching, error, fetchedData } = useFetch(fetchAvailableMeals, []);
 
-  const { handleClick, updateItemQuantity, addItemsToCart } = useContext(MealsCxt);
+  const { handleClick, updateItemQuantity, addItemsToCart,meals } = useContext(MealsCxt);
 
   if (error) {
     return <Error title="Error" message={error.message} />;
   }
+  
 
   return (
-    <ul className="w-[60%] m-auto grid sm:grid-cols-2 grid-cols-3 gap-4 justify-center ">
+    <ul className="max-w-[50%] m-auto grid sx:grid-cols-1 sm:grid-cols-2 gap-4 xlg:grid-cols-3 justify-center">
       {fetchedData.map((meal) => {
         return (
           <li
-            className="w-[181px] shadow-xl text-center bg-[rgba(0,0,0,0.32)]  text-white rounded-3xl [p-inline-start:0px] overflow-hidden"
+            className="shadow-xl text-center bg-[rgba(0,0,0,0.32)]  text-white rounded-3xl overflow-hidden"
             key={meal.id}
           >
             <img
@@ -35,7 +36,7 @@ const Product = () => {
               <p className="text-xs my-4 font-thin">{meal.description}</p>
               <button
                 onClick={() => addItemsToCart(meal.id, fetchedData)}
-                className="bg-[yellow] text-black font-thin text-xs py-1 px-4 rounded-[4px]"
+                className="bg-[yellow] text-black font-thin text-xs px-4 rounded-[4px] items-self-end "
               >
                 Add to Cart
               </button>

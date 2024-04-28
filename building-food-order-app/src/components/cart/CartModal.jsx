@@ -15,7 +15,7 @@ const CartModal = ({ children }) => {
 
   return createPortal(
     <dialog
-      className="backdrop:bg-[rgba(0,0,0,0.65)]/90 w-[50%] shadow-[0_0_10px_rgba(0,0,0,0.5)] animate-[fade-slide-in-from-top_0.3s_ease-in-out] border-none rounded-md"
+      className="backdrop:bg-[rgba(0,0,0,0.65)] w-[50%] shadow-[0_0_10px_rgba(0,0,0,0.5)] animate-[fade-slide-in-from-top_0.3s_ease-in-out] border-none rounded-md"
       ref={dialog}
     >
       {modalIsOpen ? children : null}

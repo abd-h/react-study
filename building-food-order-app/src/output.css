@@ -1163,11 +1163,11 @@ video {
 
 .\[p-inline-end\:0\] {
   p-inline-end: 0;
-}
+} */
 
-.\[m-inline-end\:0\] {
+ .\[m-inline-end\:0\] {
   m-inline-end: 0;
-}
+} */
 
 .\[p-inline-start\:0px\] {
   p-inline-start: 0px;
@@ -1183,8 +1183,8 @@ body {
   }
 }
 
-@media and (max-width:768px) {
+ @media (max-width:768px) { 
   .\[\@media_and_\(max-width\:768px\)\]\:grid-cols-2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-}
+} 

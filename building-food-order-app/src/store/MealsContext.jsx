@@ -1,4 +1,6 @@
 import { createContext, useState, useReducer } from "react";
+import { useFetch } from "../hooks/useFetch";
+import { fetchAvailableMeals, mealsOrdered } from "../http";
 
 export const MealsCxt = createContext({
   handleClick: () => {},
@@ -11,6 +13,8 @@ function shoppingCartReducer(state, action) {
     const existingCartItemIndex = updatedItems.findIndex(
       (cartItem) => cartItem.id === action.payload.id
     );
+
+      // console.log(action.payload.products.find(product => product.id === action.payload.id));
 
     const existingCartItem = updatedItems[existingCartItemIndex];
 
@@ -27,9 +31,10 @@ function shoppingCartReducer(state, action) {
       );
         
       updatedItems.push({
-        id: action.payload,
+        id: action.payload.id,
         name: product.name,
         price: product.price,
+        image: product.image,
         quantity: 1,
       });
     }
@@ -40,16 +45,22 @@ function shoppingCartReducer(state, action) {
   }
   if (action.type === "UPDATE_ITEM") {
     const updatedItems = [...state.items];
-
+    console.log(state);
+    
     const updatedItemIndex = updatedItems.findIndex(
       (item) => item.id === action.payload.productId
     );
 
+   
     const updatedItem = {
       ...updatedItems[updatedItemIndex],
     };
 
+     console.log(updatedItem);
+
     updatedItem.quantity += action.payload.amount;
+
+    console.log(updatedItem);
 
     if (updatedItem.quantity <= 0) {
       updatedItems.splice(updatedItemIndex, 1);
@@ -68,6 +79,12 @@ function shoppingCartReducer(state, action) {
 export const MealsContext = ({ children }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
+  const [isCheckout, setIsCheckedout] = useState(false);
+
+  const {fetchedData} = useFetch(fetchAvailableMeals, []);
+
+  // console.log(fetchedData);
+
   const [shoppingCartState, shoppingCartDespatch] = useReducer(
     shoppingCartReducer,
     {
@@ -81,6 +98,8 @@ export const MealsContext = ({ children }) => {
 
   const handleClickCart = () => {
     setModalIsOpen(false);
+    setIsCheckedout(false)
+    
   };
 
     function handleAddItemsToCart(id, products) {
@@ -104,6 +123,20 @@ export const MealsContext = ({ children }) => {
     });
   }
 
+  const handleCheckout = (e) => {
+    e.preventDefault();
+    setIsCheckedout(true);
+  }
+
+  async function handleSubmitedOrders(submitedMeals) {
+    console.log(submitedMeals);
+    try {
+      await mealsOrdered(submitedMeals);
+    } catch (error) {
+      throw new Error('Nothing Submited')
+  }
+}
+
   const mealsCxtValue = {
     handleClick,
     modalIsOpen,
@@ -111,6 +144,10 @@ export const MealsContext = ({ children }) => {
     meals: shoppingCartState.items,
     addItemsToCart: handleAddItemsToCart,
     updateItemQuantity: handleUpdateCartItemQuantity,
+    isCheckout,
+    handleCheckout,
+    mealsOrdered,
+    handleSubmitedOrders,
   };
   return (
     <MealsCxt.Provider value={mealsCxtValue}>{children}</MealsCxt.Provider>
