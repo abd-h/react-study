@@ -1,10 +1,11 @@
-import { configureStore } from '@reduxjs/toolkit';
-import cartSliceAction from './cartSlice';
-import quantitySlice from './quantitySlice';
+import { configureStore } from "@reduxjs/toolkit";
+import addToCartSliceActions  from "./add-to-cart-slice";
+import uiSliceActions  from "./ui-slice";
 
 const store = configureStore({
     reducer: {
-        cart: cartSliceAction, quantity: quantitySlice
+        ui: uiSliceActions,
+        addToCart: addToCartSliceActions,
     }
 });
 

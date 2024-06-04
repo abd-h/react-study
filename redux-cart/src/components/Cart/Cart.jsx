@@ -1,31 +1,32 @@
-import { Fragment } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import Cards from '../UI/Cards'
-import CartItem from './CartItem';
-import { quantityActions } from '../../store/quantitySlice';
+import { Fragment } from "react";
+import { useSelector } from "react-redux";
+import Cards from "../UI/Cards";
+import CartItem from "./CartItem";
 
 const Cart = () => {
-  const showCart = useSelector(state => state.cart.showCart);
-
-  
-
-  console.log(showCart,);
+ const cartTotal = useSelector(state => state.addToCart.totalPrice) 
+  const quantity = useSelector((state) => state.addToCart.quantity);
+  const cartItem = useSelector(state => state.addToCart.items);
+ console.log(cartTotal);
   return (
     <Fragment>
-      {showCart && (
-        <Cards className="max-w-[30rem] text-white flex flex-col tracking-wider my-4 mx-auto bg-[#313132] rounded-md py-2 px-4">
-          <h2 className="font-bold capitalize my-4 text-xl ">
-            Your Shopping Cart
-          </h2>
-          <ul className="bg-[#5e5e5e] py-2 px-4 mb-6 ">
-            <CartItem
-              item={{ title: "Test Item",  total: 18, price: 6 }}
-            />
-          </ul>
+      <Cards className="max-w-[35rem] text-white flex flex-col tracking-wider my-4 mx-auto bg-[#313132] rounded-md py-2 px-4">
+        <h2 className="font-bold capitalize my-4 text-xl ">
+          Your Shopping Cart
+        </h2>
+        <ul className="  mb-6 flex flex-col">
+          {cartItem.length === 0 && <p>Your Basket is empty</p>}
+          {cartItem.length > 0 &&
+            cartItem.map((item) => <CartItem key={item.id} item={{ item }} />)}
+        </ul>
+        <Cards className="w-full text-white flex flex-col tracking-wider my-4 mx-auto bg-[#787878] rounded-md py-2 px-4">
+          <p className="w-full flex justify-between my-2 tracking-widest">
+            <span>Total Due</span> <span>£{cartTotal}</span>
+          </p>
         </Cards>
-      )}
+      </Cards>
     </Fragment>
   );
-}
+};
 
-export default Cart
+export default Cart;

@@ -1,53 +1,52 @@
-import React, { useSelector, useDispatch} from "react-redux";
-import { quantityActions } from "../../store/quantitySlice";
+import { useSelector, useDispatch } from "react-redux";
+import { addToCartSliceActions } from "../../store/add-to-cart-slice";
 
 const CartItem = ({ item }) => {
-  const quantity = useSelector((state) => state.quantity.quantity);
+  const selectedItemQuantity = useSelector((state) => state.addToCart.quantity);
+  const { name: title, price, totalPrice, id, quantity } = item.item;
   
+  // const totalPrice = selectedItemQuantity * price;
+
   const dispatch = useDispatch();
-
-  const increaseQuantity = () => {
-    dispatch(quantityActions.increaseQuantity());
-  };
-
-  const handleDecreaseQuantity = () => {
-    dispatch(quantityActions.decreaseQuantity());
+  const handleIncrease = () => {
+    dispatch(addToCartSliceActions.addItemToCart({title, id, price}));
   }
-  
-  const { title, price } = item;
-  const quantityPrice = price * quantity;
-  console.log(quantity, quantityPrice);
+
+  const handleDecreaseItemQuantity = () => {
+    dispatch(addToCartSliceActions.removeItemFromCart(id));
+  }
+
   return (
-    <li className="my-2">
+    <li className="py-2 px-4 my-4 rounded-md bg-[#5e5e5e]">
       <header className=" my-2">
         <div className="flex justify-between content-center">
           <div>
             <h3 className="font-bold mb-4 text-2xl">{title}</h3>
-            {quantity > 0 && (
-              <p>
-                {" "}
-                <span className="text-lg">x</span> {quantity}
-              </p>
-            )}
+
+            <p>
+              {" "}
+              <span className="text-lg">x</span> {quantity}
+            </p>
           </div>
           <div className="flex flex-col justify-between">
-            
-              <p className="flex flex-col gap-1 items-center py-3">
-                {" "}
-                <span className=" text-2xl"> ${quantity > 0 ? quantityPrice.toFixed(2) : 0}</span>
-                <span className="font-normal text-sm">($6.00/item)</span>
-              </p>
-            
+            <p className="flex gap-1 items-center py-3">
+              {" "}
+              <span className=" text-2xl"> £{totalPrice} </span>
+              <span className="font-normal text-sm">
+                (£{price.toFixed(2)}/item)
+              </span>
+            </p>
+
             <div className="self-end">
               <button
-                onClick={handleDecreaseQuantity}
+                onClick={handleDecreaseItemQuantity}
                 className="hover:bg-[#505050] border-[1px] mx-2 my-2 text-lg px-4  rounded-md
               "
               >
                 -
               </button>
               <button
-                onClick={increaseQuantity}
+                onClick={handleIncrease}
                 className="hover:bg-[#505050] border-[1px] px-4 text-lg rounded-md
               "
               >
@@ -57,6 +56,9 @@ const CartItem = ({ item }) => {
           </div>
         </div>
       </header>
+      <p className="flex justify-between my-2 tracking-widest">
+        <span>Total Due</span> <span>£{totalPrice}</span>
+      </p>
     </li>
   );
 };
