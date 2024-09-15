@@ -1,11 +1,12 @@
 import React from 'react';
-import { Outlet } from 'react-router-dom';
-import MainNavigation from '../components/MainNavigation';
 
-const RoutLayoutPage = () => {
+import EventsNavigation from '../components/EventsNavigation'
+import { Outlet } from 'react-router-dom';
+
+const EventLayout = () => {
   return (
       <>
-          <MainNavigation />
+          <EventsNavigation />
           <main>
           <Outlet />
           </main>
@@ -13,4 +14,4 @@ const RoutLayoutPage = () => {
   )
 }
 
-export default RoutLayoutPage;
+export default EventLayout

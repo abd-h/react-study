@@ -1,11 +1,1 @@
-{
-  "events": [
-    {
-      "id": "e1",
-      "title": "A dummy event",
-      "date": "2023-02-22",
-      "image": "https://blog.hubspot.de/hubfs/Germany/Blog_images/Optimize_Marketing%20Events%20DACH%202021.jpg",
-      "description": "Join this amazing event and connect with fellow developers."
-    }
-  ]
-}
+{"events":[{"title":"new book","image":"https://images.pexels.com/photos/6954800/pexels-photo-6954800.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load","date":"2024-09-13","description":"new data loaded.","id":"1a8d423e-6200-479c-a990-edebbba57348"},{"title":"Testing","image":"https://images.pexels.com/photos/6954800/pexels-photo-6954800.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load","date":"2024-09-20","description":"text","id":"82e6abf7-8cd8-494d-a934-50827a8210de"},{"title":"Satday33","image":"https://images.pexels.com/photos/25189483/pexels-photo-25189483/free-photo-of-close-up-of-orchids.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1","date":"2024-09-14","description":"Saturday!","id":"c5a8a815-7afe-4c47-a1c6-8ce672abdf51"},{"title":"Sunday","image":"https://images.pexels.com/photos/6954800/pexels-photo-6954800.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load","date":"2024-09-14","description":"Saturday!","id":"b3f0839b-7142-4ffd-8022-79edfe06de49"},{"title":"New Event added","image":"https://images.pexels.com/photos/6954800/pexels-photo-6954800.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load","date":"2024-09-12","description":"Just EDITED!","id":"84cbd734-f85d-4284-9402-9b0c5c0d40e1"},{"id":"e1","title":"A dummy event","date":"2023-02-22","image":"https://blog.hubspot.de/hubfs/Germany/Blog_images/Optimize_Marketing%20Events%20DACH%202021.jpg","description":"Join this amazing event and connect with fellow developers."}]}
