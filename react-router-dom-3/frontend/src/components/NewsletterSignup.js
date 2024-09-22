@@ -1,10 +1,17 @@
-import { useFetcher } from "react-router-dom";
+import { useFetcher, useNavigation} from "react-router-dom";
 import classes from "./NewsletterSignup.module.css";
 
 function NewsletterSignup() {
-    const fetcher = useFetcher();
+  const fetcher = useFetcher();
+ 
+  const navigation = useNavigation();
+  
+  if (navigation.state === 'submitting') {
+   return  window.alert('Successfully signup')
+  }
+  
   return (
-    <fetcher.Form method="post" action="/newsletter" className={classes.newsletter}>
+    <fetcher.Form method="post" action="/newsletter/" className={classes.newsletter}>
       <input
         type="email"
         placeholder="Sign up for newsletter..."

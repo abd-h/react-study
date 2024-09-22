@@ -40,7 +40,7 @@ export const loader = async ({ request, params }) => {
   const eventId = params.eventId;
   return defer({
     events: eventsLoader(),
-    event: eventDetailLoader(eventId),
+    event: await eventDetailLoader(eventId),
   })
 }
 
